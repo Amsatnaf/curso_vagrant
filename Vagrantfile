@@ -1,14 +1,18 @@
-vagrant.configure("2") do |config|
+Vagrant.configure("2") do |config|
 
-	config.vm.porevider "virtualbox"
-	
-	config.vm.difine :curso_vagrant do |curso_vagrant_config|
-		#usando ubuntu 18.04
-		curso_vagrant_config.vm.box = "ubuntu/bionic64"
-		curso_vagrant_config.vm.network = "private_network", ip: "192.168.50.12"
-	cuso_vagrant_config.vm.provision "shell", path: "manifests/install_pp.sh"
-	end
+  config.vm.provider "virtualbox"
+
+ config.vm.define :curso do |curso_config|
+    #usando ubuntu 18.04
+                curso_config.vm.box = "ubuntu/bionic64"
+                curso_config.vm.network "private_network", ip: "192.168.50.10"
+    curso_config.vm.provision "shell", path: "manifests/install.sh"
+                curso_config.vm.provision "puppet" do |puppet|
+       puppet.manifest_file = "curso.pp"
+    end
+        end
+
 end
-              
+          
 
 		
