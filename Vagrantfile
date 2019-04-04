@@ -8,8 +8,8 @@ Vagrant.configure("2") do |config|
                 curso_config.vm.network "private_network", ip: "192.168.50.10"
     curso_config.vm.provision "shell", path: "manifests/install.sh"
                 curso_config.vm.provision "puppet" do |puppet|
-       puppet.manifest_file = "curso.pp"
-    end
+                    puppet.manifest_file = "curso.pp"
+                end
         end
 
 end
